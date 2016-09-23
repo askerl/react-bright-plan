@@ -8,6 +8,16 @@
   font-weight: bold;
 }
 
+#risk::before{
+  content: '1';
+  margin-right: 10px;
+}
+
+#risk::after{
+  content: '10';
+  margin-left: 10px;
+}
+
 input[type=range] {
   -webkit-appearance: none;
   margin: 10px 0;

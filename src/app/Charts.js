@@ -30,6 +30,7 @@ class Charts extends React.Component {
               </div>
               <div className="panel-body">
                 <input
+                  id="risk"
                   ref={(c) => this._input = c}
                   type="range"
                   min="1"
@@ -48,7 +49,7 @@ class Charts extends React.Component {
             <div className="panel panel-default">
               <div className="panel-heading">
                 <h3 className="panel-title">
-                  {`Investment portfolio #${this.state.currentChart}`}
+                  {`Investment portfolio`}
                 </h3>
               </div>
               <div className="panel-body">

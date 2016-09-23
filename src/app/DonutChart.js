@@ -25,7 +25,7 @@ class DonutChart extends React.Component {
               type: 'pie'
           },
           title: {
-              text: 'Portfolio chart'
+              text: `Portfolio chart`
           },
           subtitle: {
               text: ''
@@ -33,21 +33,30 @@ class DonutChart extends React.Component {
           plotOptions: {
               pie: {
                   shadow: false,
-                  center: ['50%', '50%']
+                  center: ['50%', '50%'],
+                  dataLabels: {
+                    enabled: true,
+                    distance: -20,
+                    style: {
+                        fontSize: '10px',
+                        fontWeight: 'bold',
+                        color: 'black'
+                    }
+                  }
               }
           },
           tooltip: {
-              valueSuffix: ''
+              valueSuffix: 'USD'
           },
           series: [{
               name: 'Value',
               data: this.initialChart,
-              size: '80%',
-              innerSize: '60%',
+              size: '100%',
+              innerSize: '50%',
               dataLabels: {
                   formatter: function () {
                       // display only if larger than 1
-                      return this.y > 1 ? '<b>' + this.point.name + ':</b> ' + this.y : null;
+                      return this.y > 1 ? '<b>' + this.point.name + ':</b> ' + this.y + ' USD' : null;
                   }
               }
           }]
