@@ -3,33 +3,18 @@ import ReactDOM from 'react-dom';
 
 import DonutChart from './DonutChart';
 
-import {chartsList} from '../constants/constants';
-
 class Charts extends React.Component {
+
   constructor(props) {
     super(props);
-    this.state = {current: 1}
+    this.state = {currentChart: 1}
   }
-
-  // componentDidMount(){
-  //   console.log("did mount");
-  //   this._drawChart();
-  // }
-  //
-  // _drawChart(){
-  //   Morris.Donut({
-  //       element: 'morris-donut-chart',
-  //       data: chartsList[this.state.current - 1],
-  //       resize: false
-  //     });
-  // }
 
   _handleOnChange(e){
     e.preventDefault();
     this.setState({
-      current: this._input.value
+      currentChart: this._input.value
     });
-    // this._drawChart();
   }
 
   render(){
@@ -40,7 +25,7 @@ class Charts extends React.Component {
             <div className="panel panel-default">
               <div className="panel-heading">
                 <h3 className="panel-title">
-                  Risk tolerance
+                  {`Risk profile: ${this.state.currentChart}`}
                 </h3>
               </div>
               <div className="panel-body">
@@ -63,11 +48,11 @@ class Charts extends React.Component {
             <div className="panel panel-default">
               <div className="panel-heading">
                 <h3 className="panel-title">
-                  {`Investment portfolio: #${this.state.current}`}
+                  {`Investment portfolio #${this.state.currentChart}`}
                 </h3>
               </div>
               <div className="panel-body">
-                <DonutChart chartNum={this.state.current - 1}/>
+                <DonutChart currentChart={this.state.currentChart - 1}/>
               </div>
             </div>
           </div>
