@@ -1,75 +1,40 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import {chartsData,categories} from '../constants/data';
+import {chartsData,categories,colors} from '../constants/data';
 
 class DonutChart extends React.Component {
 
-  constructor(){
-    super();
-    this.initialChart = [
-      {name: categories[0], y: 100},
-      {name: categories[1], y: 200},
-      {name: categories[2], y: 300},
-      {name: categories[3], y: 400},
-      {name: categories[4], y: 500},
-      {name: categories[5], y: 700},
-    ];
-  }
-
   componentDidMount() {
-    // Create the chart
-    this.chart = $('#chart').highcharts({
-          chart: {
-              type: 'pie'
-          },
-          title: {
-              text: `Portfolio chart`
-          },
-          subtitle: {
-              text: ''
-          },
-          plotOptions: {
-              pie: {
-                  shadow: false,
-                  center: ['50%', '50%'],
-                  dataLabels: {
-                    enabled: true,
-                    distance: -20,
-                    style: {
-                        fontSize: '10px',
-                        fontWeight: 'bold',
-                        color: 'black'
-                    }
-                  }
-              }
-          },
-          tooltip: {
-              valueSuffix: 'USD'
-          },
-          series: [{
-              name: 'Value',
-              data: this.initialChart,
-              size: '100%',
-              innerSize: '50%',
-              dataLabels: {
-                  formatter: function () {
-                      // display only if larger than 1
-                      return this.y > 1 ? '<b>' + this.point.name + ':</b> ' + this.y + ' USD' : null;
-                  }
-              }
-          }]
-      });
+
+    let ctx = document.getElementById("myChart");
+
+    let data = {
+        labels: categories,
+        datasets: [
+            {
+                data: chartsData[this.props.currentChart],
+                backgroundColor: colors,
+                hoverBackgroundColor: colors
+            }]
+    };
+
+    // And for a doughnut chart
+    this.chart = new Chart(ctx, {
+        type: 'doughnut',
+        data: data
+    });
+
   }
 
   componentWillReceiveProps(props) {
-    this.chart.highcharts().series[0].setData(chartsData[props.currentChart]);
+    this.chart.data.datasets[0].data = chartsData[props.currentChart]; // Would update the first dataset's value of 'March' to be 50
+    this.chart.update();
   }
 
   render(){
     return(
-      <div id="chart">
-      </div>
+      <canvas id="myChart"></canvas>
     );
   }
 

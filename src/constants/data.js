@@ -1,28 +1,20 @@
 
 
 export const categories = ['Stocks', 'Bonds', 'ETFs', 'Cash', 'Commodities','Fixed Income'];
+export const colors = ['#506C91','#6E9F69','#4E92DF','#FF9135','#FFF092','#D14747'];
 
-const initialChart = [
-  {name: categories[0], y: 100},
-  {name: categories[1], y: 200},
-  {name: categories[2], y: 300},
-  {name: categories[3], y: 400},
-  {name: categories[4], y: 500},
-  {name: categories[5], y: 700},
-];
+const allCharts = generateCharts(50, 1000);
 
-const otherCharts = generateCharts(50, 1000);
-
-export const chartsData = [initialChart,...otherCharts];
+export const chartsData = [...allCharts];
 
 // Generate 9 random charts
 function generateCharts(min, max){
 
   let charts = [];
-  for (let c=0; c<9; c++){
+  for (let c=0; c<10; c++){
     let chart =[]
     for (let i=0, l=categories.length; i<l; i++ ){
-      chart.push({name: categories[i], y:getRandomIntInclusive(min, max)});
+      chart.push(getRandomIntInclusive(min, max));
     }
     charts.push(chart);
   }
