@@ -5,20 +5,8 @@ import {chartsData,categories} from '../constants/data';
 
 class DonutChart extends React.Component {
 
-  constructor(){
-    super();
-    this.initialChart = [
-      {name: categories[0], y: 100},
-      {name: categories[1], y: 200},
-      {name: categories[2], y: 300},
-      {name: categories[3], y: 400},
-      {name: categories[4], y: 500},
-      {name: categories[5], y: 700},
-    ];
-  }
-
   componentDidMount() {
-
+    console.log(chartsData);
     // Create the chart
     this.chart = $('#chart').highcharts({
           chart: {
@@ -50,7 +38,7 @@ class DonutChart extends React.Component {
           },
           series: [{
               name: 'Value',
-              data: this.initialChart,
+              data: chartsData[this.props.currentChart],
               size: '100%',
               innerSize: '50%',
               dataLabels: {
@@ -61,7 +49,6 @@ class DonutChart extends React.Component {
               }
           }]
       });
-
   }
 
   componentWillReceiveProps(props) {

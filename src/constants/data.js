@@ -11,7 +11,7 @@ const initialChart = [
   {name: categories[5], y: 700},
 ];
 
-let otherCharts = generateCharts(50, 1000);
+const otherCharts = generateCharts(50, 1000);
 
 export const chartsData = [initialChart,...otherCharts];
 
