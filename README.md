@@ -1,6 +1,6 @@
 # react-bright-plan
 
-To set up the project:
+Project setup:
 
 1. Clone or donwload
 2. npm install
